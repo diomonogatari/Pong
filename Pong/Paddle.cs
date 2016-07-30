@@ -16,10 +16,7 @@ namespace Pong
         public bool? goingUp = null, wasMovingSameDirection;
         int ticksInSameDirection;
         public Label label;
-        //double acceleration = 1.0;
-
         public int Score { get; set; } = 0;
-        public string Name { get; set; }
 
         public Paddle(PictureBox Paddle, Label Label)
         {
@@ -28,7 +25,7 @@ namespace Pong
         }
         public void Move(int speed)
         {
-            if (moving)//AND not working
+            if (moving)
             {
                 checkDirectionMovement();
                 speed = (int)Math.Round(speed * ((float)ticksInSameDirection / 8));

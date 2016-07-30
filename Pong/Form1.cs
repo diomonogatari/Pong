@@ -14,33 +14,29 @@ namespace Pong
     {
         public static int moveSpeed = 3;
         private Point ballCenter = new Point(363, 208);
-        public static int leftOfWorld,topOfWorld = 0, botOfWorld = 437, rightOfWorld = 725;
+        public static int leftOfWorld, topOfWorld = 0, botOfWorld = 437, rightOfWorld = 725;
         public static Paddle player1;
         public static Paddle player2;
         Ball ball;
         public Form1()
         {
             InitializeComponent();
-            player1 = new Paddle(picPaddle1,lblPlayer1);
-            player2 = new Paddle(picPaddle2,lblPLayer2);
+            player1 = new Paddle(picPaddle1, lblPlayer1);
+            player2 = new Paddle(picPaddle2, lblPLayer2);
             ball = new Ball(picBall, player1, player2);
-            
         }
 
         private void tmrTime_Tick(object sender, EventArgs e)
         {
             checkBallScoreCollisions();
-            player1.Move( moveSpeed);
-            player2.Move( moveSpeed);
+            player1.Move(moveSpeed);
+            player2.Move(moveSpeed);
             ball.Move();
-            //ball move
-            
         }
 
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
             checkKeysPressed(e, true);
-
         }
 
         private void Form1_KeyUp(object sender, KeyEventArgs e)
@@ -80,15 +76,14 @@ namespace Pong
 
             }
         }
-
         private void checkBallScoreCollisions()
         {
             if (ball.picBall.Location.X == Form1.leftOfWorld)
-                {
+            {
                 player2.Score++;
                 player2.label.Text = player2.Score.ToString();
                 centerBall(ball);
-                }
+            }
             else if (ball.picBall.Location.X == Form1.rightOfWorld)
             {
                 player1.Score++;
@@ -100,8 +95,6 @@ namespace Pong
         {
             Ball.picBall.Location = ballCenter;
             Ball.generateSpeeds();
-            
         }
     }
-
 }
