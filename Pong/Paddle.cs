@@ -9,32 +9,42 @@ using Pong;
 
 namespace Pong
 {
-    class Paddle
+    public class Paddle
     {
-        PictureBox paddle;
-        public bool moving = false;
+        public PictureBox paddle;
+        public bool moving = false, wasMoving = true;
         public bool? goingUp = null;
+        public Label label;
+        double acceleration = 1.0;
 
-        public Paddle(PictureBox Paddle)
+        public int Score { get; set; } = 0;
+        public string Name { get; set; }
+
+        public Paddle(PictureBox Paddle, Label Label)
         {
             paddle = Paddle;
+            label = Label;
         }
         public void Move(int speed)
         {
-            if (moving)
+            
+            if (moving)//AND not working
             {
+                Console.WriteLine(paddle.AccessibleName);
                 switch (goingUp)
                 {
                     case true:
-                        paddle.Location = new Point(paddle.Location.X, paddle.Location.Y - speed);
+                        paddle.Location = new Point(paddle.Location.X,
+                            Math.Max(Form1.topOfWorld,
+                            Math.Min(Form1.botOfWorld - paddle.Height, paddle.Location.Y - speed)));
                         break;
                     case false:
-                        paddle.Location = new Point(paddle.Location.X, paddle.Location.Y + speed);
+                        paddle.Location = new Point(paddle.Location.X,
+                            Math.Max(Form1.topOfWorld,
+                            Math.Min(Form1.botOfWorld - paddle.Height,paddle.Location.Y + speed)));
                         break;
                 }
             }
-            //find direction
-            //move that direction
         }
     }
 }
