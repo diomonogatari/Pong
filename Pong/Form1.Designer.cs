@@ -44,7 +44,7 @@
             // tmrTime
             // 
             this.tmrTime.Enabled = true;
-            this.tmrTime.Interval = 10;
+            this.tmrTime.Interval = 13;
             this.tmrTime.Tick += new System.EventHandler(this.tmrTime_Tick);
             // 
             // picPaddle2
